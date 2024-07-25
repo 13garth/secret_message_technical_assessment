@@ -12,7 +12,7 @@ Install Instructions :
 - npm run build
 - create a Schema for the system
 - Setup a DB connection in the .env file for your schema. (There is a .env.example you can copy)
-- php artisan migrate
+- php artisan migrate; php artisan db:seed;
 
 --- 
 
