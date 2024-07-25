@@ -4,20 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Message;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
-    // /**
-    //  * Create a new controller instance.
-    //  *
-    //  * @return void
-    //  */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     /**
      * Show the application dashboard.
      *
@@ -30,6 +23,11 @@ class HomeController extends Controller
         return view('home', compact('users'));
     }
 
+    /**
+     *
+     * @return RedirectResponse
+     * @throws BindingResolutionException
+     */
     public function send_message()
     {
         $data = request()->validate([
@@ -53,6 +51,12 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     *
+     * @param mixed $message_id
+     * @return JsonResponse
+     * @throws BindingResolutionException
+     */
     public function decrypt_message($message_id)
     {
         $message = Message::findOrFail($message_id);
